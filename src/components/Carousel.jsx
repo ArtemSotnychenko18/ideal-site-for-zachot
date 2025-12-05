@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Flex, Text, Button, IconButton, Image, Heading } from '@chakra-ui/react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { Link } from 'react-router-dom'; // <--- 1. Додали імпорт
 
 const Carousel = ({ items }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -44,10 +45,14 @@ const Carousel = ({ items }) => {
       <Text fontSize={isCenter ? "xl" : "md"} color="green.500" fontWeight="bold" mt={2}>
         {item.price} грн
       </Text>
+      
+      {/* 2. Обгортаємо кнопку в Link */}
       {isCenter && (
-        <Button mt={4} colorScheme="blackAlpha" size="md" w="80%">
-          Купити
-        </Button>
+        <Link to={`/product/${item.id}`} style={{ width: '80%', display: 'flex', justifyContent: 'center' }}>
+          <Button mt={4} colorScheme="blackAlpha" size="md" w="100%">
+            Купити
+          </Button>
+        </Link>
       )}
     </Box>
   );
